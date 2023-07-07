@@ -1,10 +1,14 @@
 def general_clustering(user_clusters, response_format, df_reviews, chain):
-    """_summary_
+    """ clustering your reviews according to user-defined clusters
 
     Args:
-        user_clusters (_type_): clusters defined by our user
-        df_reviews (pd.DataFrame): dataset
-        chain (langchain.LLMChain): executed chain
+        user_clusters (list[str]): list of clusters names
+        response_format (string): constraints on the LLM output 
+        df_reviews (pd.DataFrame): the reviews dataframe
+        chain (langchain.LLMChain): the prompt chain
+
+    Returns:
+        pd.Dataframe: a modified version of the the input dataframe adding the clusters columns
     """
     general_cluster_name = []
     general_cluster_oh = []

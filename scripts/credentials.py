@@ -1,3 +1,5 @@
+# The module is concerned by safely importing credentials as OPENAI Api key
+
 import os
 import dotenv
 

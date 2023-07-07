@@ -1,5 +1,7 @@
 from langchain import PromptTemplate
 
+# The module is concerned of building and enginnering LLM prompts
+
 general_clustering_template = PromptTemplate(
     input_variables=["clusters", "review", "response_format"],
     template="""
