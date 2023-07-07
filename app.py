@@ -9,8 +9,8 @@ from langchain.chains import LLMChain
 
 from scripts.prompts import general_clustering_template
 from scripts.clustering import general_clustering
-from scripts.summarize import extract_key_points
-from scripts.chains import extract_key_points_chain, general_clustering_chain
+from scripts.summarize import extract_key_points, summarize_key_points
+from scripts.chains import extract_key_points_chain, general_clustering_chain, summarize_key_points_chain
 
 llm = OpenAI(temperature=0)
 chain = LLMChain(llm=llm, prompt=general_clustering_template)
@@ -22,7 +22,7 @@ sample_review = "I am deeply disappointed with the performance and reliability o
 df_reviews_gpt = pd.read_csv("./data/extended_commerce_reviews_minimal.csv")
 df_reviews_amazon = pd.read_csv("./data/reviews_minimal.csv")
 
-df_reviews_amazon_complaints = pd.read_csv("./data/amazon_dataset_classified.csv")
+df_reviews_amazon_complaints = pd.read_csv("./data/amazon_dataset_classified.csv").loc[:10]
 
 response = extract_key_points(df_reviews=df_reviews_amazon_complaints, chain=extract_key_points_chain, cluster="Complaints")
 
@@ -30,4 +30,18 @@ response = extract_key_points(df_reviews=df_reviews_amazon_complaints, chain=ext
 
 # response.to_csv("./data/amazon_dataset_classified.csv", index=False)
 
-print(response)
+with open("./data/key_points_compalints.txt", "w+") as f:
+    f.write("Key points : ")
+    f.write(response)
+
+print(f"The key points : {response}")
+
+print("\n")
+
+summary = summarize_key_points(key_points=response, chain=summarize_key_points_chain, cluster="Complaints")
+
+with open("./data/key_points_compalints.txt", "w+") as f:
+    f.write("Summary : ")
+    f.write(summary)
+
+print(f"The summarization: {summary}")
