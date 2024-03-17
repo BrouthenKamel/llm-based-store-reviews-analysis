@@ -1,0 +1,2 @@
+# LLM-Based Store Rerviews Analysis
+In this project, we leverage Large Language Models (LLMs) to automate the classification and summarization of online store reviews. By utilizing cutting-edge NLP techniques, our system categorizes reviews into predefined clusters such as "Complaints," "Compliments," and "Requests." Additionally, it extracts key points from reviews within specific clusters and generates concise summaries, providing valuable insights into customer sentiments and feedback.
